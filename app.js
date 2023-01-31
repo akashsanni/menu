@@ -1,119 +1,43 @@
-
+//importing menu
 import { menu } from "./1-basic.js"
 
-const sectionCenter = document.querySelector(".section-center");
+// get parent element
+const sectionCenter = document.querySelector('.section-center')
+const btnContainer = document.querySelectorAll('.btn-container')
 
-window.addEventListener("DOMContentLoaded", function () {
-    let displayMenu = menu.map(function (item) {
-      // console.log(item);
-  
-      return `<article class="menu-item">
-            <img src=${item.img} alt=${item.title} class="photo" />
-            <div class="item-info">
-              <header>
-                <h4>${item.title}</h4>
-                <h4 class="price">$${item.price}</h4>
-              </header>
-              <p class="item-text">
-                ${item.desc}
-              </p>
-            </div>
-          </article>`;
-    });
-    displayMenu = displayMenu.join("");
-    
-    sectionCenter.innerHTML = displayMenu;
-  });
-  
+//displaying all items when page loads
+window.addEventListener('DOMContentLoaded',()=>{
+  displayMenuItems(menu)
+  // displayMenuButtons()
+})
 
+function displayMenuItems(menuItems){
+  let displayMenu = menuItems.map((menu)=>{
 
-const all = document.querySelector('.all')
-all.addEventListener('click',()=>{
-    
-    let displayMenu = menu.map((item) =>{
-            return `<article class="menu-item">
-        <img src=${item.img} alt=${item.title} class="photo" />
-        <div class="item-info">
-          <header>
-            <h4>${item.title}</h4>
-            <h4 class="price">$${item.price}</h4>
-          </header>
-          <p class="item-text">
-            ${item.desc}
-          </p>
-        </div>
-      </article>`;
-    })
-  
-    displayMenu = displayMenu.join("");   
-    sectionCenter.innerHTML = displayMenu;
+    return `<article class="menu-item">
+    <img src="${menu.img}" alt="${menu.img} class="photo" />
+    <div class="item-info">
+      <header>
+        <h4>${menu.title}</h4>
+        <h4 class="price">${menu.price}</h4>
+      </header>
+      <p class="item-text">
+        ${menu.desc}
+      </p>
+    </div>
+</article>`
+  })
+  displayMenu = displayMenu.join("")
+  sectionCenter.innerHTML = displayMenu;
+};
 
+// function displayMenuButtons(){
+
+// }
+
+btnContainer.forEach((btn)=>{
+  btn.addEventListener('click',(e)=>{
+    const category =e.currentTarget.dataset;
+    console.log(category);
+  })
 });
-
-const breakfast = document.querySelector('.breakfast')
-breakfast.addEventListener('click',()=>{
-    let displayMenu = menu.map((item) =>{
-        if(`${item.category}` === "breakfast")
-        return `<article class="menu-item">
-        <img src="${item.img}" alt="${item.title}" class="photo" />
-        <div class="item-info">
-          <header>
-            <h4>${item.title}</h4>
-            <h4 class="price">${item.price}</h4>
-          </header>
-          <p class="item-text">
-          ${item.desc}
-          </p>
-        </div>
-      </article> `;
-      
-    });
-    console.log(displayMenu)
-    displayMenu = displayMenu.join("");
-    sectionCenter.innerHTML = displayMenu;
-})
-
-const lunch = document.querySelector('.lunch')
-lunch.addEventListener('click',()=>{
-    let displayMenu = menu.map((item) =>{
-        if(`${item.category}` === "lunch")
-        return `<article class="menu-item">
-        <img src="${item.img}" alt="${item.title}" class="photo" />
-        <div class="item-info">
-          <header>
-            <h4>${item.title}</h4>
-            <h4 class="price">${item.price}</h4>
-          </header>
-          <p class="item-text">
-          ${item.desc}
-          </p>
-        </div>
-      </article> `;
-      
-    });
-    console.log(displayMenu)
-    displayMenu = displayMenu.join("");
-    sectionCenter.innerHTML = displayMenu;
-})
-const shakes = document.querySelector('.shakes')
-shakes.addEventListener('click',()=>{
-    let displayMenu = menu.map((item) =>{
-        if(`${item.category}` === "shakes")
-        return `<article class="menu-item">
-        <img src="${item.img}" alt="${item.title}" class="photo" />
-        <div class="item-info">
-          <header>
-            <h4>${item.title}</h4>
-            <h4 class="price">${item.price}</h4>
-          </header>
-          <p class="item-text">
-          ${item.desc}
-          </p>
-        </div>
-      </article> `;
-      
-    });
-    console.log(displayMenu)
-    displayMenu = displayMenu.join("");
-    sectionCenter.innerHTML = displayMenu;
-})
